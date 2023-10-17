@@ -1,8 +1,24 @@
 import re
 import pandas as pd
+import os
 
 # Describe path
 path = "C:\\Program Files (x86)\\Steam\\steamapps\\common\Victoria 3\\game\\common\\production_methods\\"
+
+
+
+# Create a list of file names
+file_names = []
+
+# Get all file names from a directory
+with os.scandir(path) as entries: # Scan through the names within the path
+    for entry in entries:
+
+        entry_name = entry.name # Get each file name
+
+        if entry_name.endswith('.txt'): # Get if it is .txt
+            file_names.append(entry_name)
+
 
 # Create a function 
 def getProductionMethods():
