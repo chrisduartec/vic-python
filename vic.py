@@ -18,7 +18,35 @@ with os.scandir(path) as entries: # Scan through the names within the path
             file_names.append(entry_name)
 
 
-# Create a function 
+# Function to check initial lines
+def checkInitialLines(string):
+    if string.startswith('pm_'):
+        return True
+
+    elif string.startswith('default_building_'):
+        return True
+    
+    elif string.startswith('automatic_irrigation_building_'):
+        return True
+    
+    else:
+        return False
+    
+# Function to replace initial lines
+def replaceInitialLines(string):
+    if string.startswith('pm_'):
+        string0 = string.replace('pm_', '')
+        return string0
+    
+    elif string.startswith('default_building_'):
+        string0 = string.replace('default_building_', 'default_')
+        return string0
+    
+    elif string.startswith('automatic_irrigation_building_'):
+        string0 = string.replace('automatic_irrigation_building_', 'automatic_irrigation_')
+        return string0
+
+# Function to get the production methods
 def getProductionMethods(file_name):
 
     # Define the file name
@@ -47,8 +75,8 @@ def getProductionMethods(file_name):
             key = line_strip.split("=")[0]
         
             # Get the pm
-            if key.startswith("pm_"):
-                pm = key.strip()[3:]
+            if checkInitialLines(key):
+                pm = replaceInitialLines(key)
         
             # Get input/output/employment and the trade_good
             elif key.startswith("building_"):
@@ -82,3 +110,11 @@ def getProductionMethods(file_name):
 df_industry = getProductionMethods(file_names[1])
 df_industry
 
+df_agro = getProductionMethods(file_names[2])
+df_agro
+
+df_mines = getProductionMethods(file_names[3])
+df_mines
+
+df_plantations = getProductionMethods(file_names[4])
+df_plantations
