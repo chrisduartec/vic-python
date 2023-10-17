@@ -118,3 +118,26 @@ df_mines
 
 df_plantations = getProductionMethods(file_names[4])
 df_plantations
+
+df_military = getProductionMethods(file_names[5])
+df_military
+
+df_urban_center = getProductionMethods(file_names[6])
+df_urban_center
+
+df_government = getProductionMethods(file_names[7])
+df_government
+
+df_misc_resource = getProductionMethods(file_names[9])
+df_misc_resource
+
+df_private_infrastructure = getProductionMethods(file_names[11])
+df_private_infrastructure
+
+df_subsistence = getProductionMethods(file_names[12])
+df_subsistence
+
+df_construction = getProductionMethods(file_names[13])
+df_construction
+
+### Task: include sector name
