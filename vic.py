@@ -52,11 +52,14 @@ def getProductionMethods(file_name):
     # Define the file name
     file_to_open = path + file_name
 
+    # Get the sector name
+    sector_name = file_name.split("_")[1].split(".")[0]
+
     # Create a list of rows
     rows = []
 
     # Define the column names
-    columns = ["pm", "trade_good", "value"]
+    columns = ["sector", "pm", "trade_good", "value"]
 
     # Import the text file with the encoding
     with open(file_to_open, 'r', encoding = 'utf-8-sig') as file:
@@ -96,7 +99,7 @@ def getProductionMethods(file_name):
                         value = value_init
 
                     # Append into row
-                    rows.append([pm, trade_good, value])
+                    rows.append([sector_name, pm, trade_good, value])
 
         else:
             continue
@@ -140,4 +143,12 @@ df_subsistence
 df_construction = getProductionMethods(file_names[13])
 df_construction
 
-### Task: include sector name
+# Concatenate data bases
+df_final = pd.concat([
+    df_industry, df_agro, df_mines,
+    df_plantations, df_military, df_urban_center,
+    df_government, df_misc_resource, df_private_infrastructure,
+    df_subsistence, df_construction
+])
+
+df_final.to_excel("C://Users//chris//OneDrive//Área de Trabalho//vic.xlsx")
